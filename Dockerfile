@@ -55,7 +55,7 @@ COPY patches/480f73dd17320666944d3864863382ba63694046.patch /tmp/
 ARG SRT_LIVE_SERVER_VERSION=master
 RUN set -xe; \
     mkdir -p /build; \
-    git clone https://github.com/IRLDeck/srt-live-server.git /build/srt-live-server; \
+    git clone https://github.com/puschenkino/srt-live-server.git /build/srt-live-server; \
     cd /build/srt-live-server; \
     git checkout $SRT_LIVE_SERVER_VERSION; \
     patch -p1 < /tmp/480f73dd17320666944d3864863382ba63694046.patch; \
