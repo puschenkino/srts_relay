@@ -1,5 +1,5 @@
 # Use the slim version of Debian for the builder stage
-FROM debian:bullseye-slim AS builder
+FROM debian:bookworm-slim AS builder
 
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV DEBIAN_FRONTEND=noninteractive
@@ -63,7 +63,7 @@ RUN set -xe; \
     cp bin/* /usr/local/bin;
 
 # Use the slim version for the runtime container with NOALBS
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 RUN set -xe; \
     apt-get update; \
