@@ -76,7 +76,7 @@ COPY --from=builder /usr/local/include /usr/local/include
 COPY --from=builder /usr/local/bin /usr/local/bin
 
 COPY build/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY files/logprefix /usr/local/bin/logprefix
+COPY build/logprefix /usr/local/bin/logprefix
 
 RUN set -xe; \
     ldconfig; \
