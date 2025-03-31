@@ -24,9 +24,7 @@ RUN apk update &&\
 COPY --from=build /usr/local/bin/srt-* /usr/local/bin/
 COPY --from=build /usr/local/lib/libsrt* /usr/local/lib/
 COPY --from=build /tmp/srt-live-server/bin/* /usr/local/bin/
-COPY sls.conf /etc/sls/
-VOLUME /logs
-EXPOSE 1935/udp
+
 USER srt
 WORKDIR /home/srt
 ENTRYPOINT [ "sls", "-c", "/etc/sls/sls.conf"]
