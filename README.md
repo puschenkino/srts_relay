@@ -1,2 +1,35 @@
 # srts_relay
-docker srts relay
+mount a sls.conf to /srv/sls/etc/sls.conf with content:
+
+```
+# SRT Live Server configuration
+#
+srt {
+  # Configure worker
+  worker_threads 1;
+  worker_connections 300;
+
+  # Configure logging
+  log_file /srv/sls/logs/sls.log;
+  log_level debug;
+
+  # Configure server on UDP port 9710
+  server {
+    listen 9710;
+    latency 20;
+
+    # Domain settings
+    domain_player live;
+    domain_publisher publish;
+
+    # Stream settngs
+    backlog 100;
+    idle_streams_timeout 10;
+
+    # Application settings
+    app {
+      app_player stream;
+      app_publisher stream;
+    }
+  }
+}
