@@ -1,4 +1,4 @@
-#!/usr/bin/bash bash
+#!/bin/bash
 
 ### prefix-log script #####################################################
 # This script prefixes all output lines with the $SUPERVISOR_PROCESS_NAME
