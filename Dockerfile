@@ -19,8 +19,6 @@ RUN set -xe; \
     curl \
     pkg-config \
     openssl \
-    # For NOALBS build
-    musl-tools; \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # belabox patched srt
@@ -51,7 +49,6 @@ RUN cp /build/srtla/srtla_rec /build/srtla/srtla_send /usr/local/bin
 # srt-live-server
 # Notes
 # - upstream patch for logging on arm
-COPY patches/480f73dd17320666944d3864863382ba63694046.patch /tmp/
 
 ARG SRT_LIVE_SERVER_VERSION=master
 RUN set -xe; \
@@ -59,7 +56,6 @@ RUN set -xe; \
     git clone https://github.com/IRLDeck/srt-live-server.git /build/srt-live-server; \
     cd /build/srt-live-server; \
     git checkout $SRT_LIVE_SERVER_VERSION; \
-    patch -p1 < /tmp/480f73dd17320666944d3864863382ba63694046.patch; \
     make -j4; \
     cp bin/* /usr/local/bin;
 
@@ -78,7 +74,6 @@ COPY --from=builder /usr/local/lib /usr/local/lib
 COPY --from=builder /usr/local/include /usr/local/include
 COPY --from=builder /usr/local/bin /usr/local/bin
 
-COPY files/sls.conf /etc/sls/sls.conf
 COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY files/logprefix /usr/local/bin/logprefix
 
@@ -87,7 +82,5 @@ RUN set -xe; \
     chmod 755 /usr/local/bin/logprefix;
 
 EXPOSE 5000/udp 8181/tcp 8282/udp
-
-VOLUME [ "/app/config.json", "/app/.env" ]
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
