@@ -18,8 +18,9 @@ RUN set -xe; \
     # For RUST installation
     curl \
     pkg-config \
-    openssl \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    openssl
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # belabox patched srt
 #
