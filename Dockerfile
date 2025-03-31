@@ -63,18 +63,6 @@ RUN set -xe; \
     make -j4; \
     cp bin/* /usr/local/bin;
 
-ARG NOALBS_VERSION=v2.11.2
-RUN set -xe; \
-    git clone https://github.com/715209/nginx-obs-automatic-low-bitrate-switching /build/noalbs; \
-    cd /build/noalbs; \
-    git checkout $NOALBS_VERSION; \
-    # Taken from https://github.com/NOALBS/nginx-obs-automatic-low-bitrate-switching/blob/v2/.github/workflows/release.yml
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y; \
-    . "$HOME/.cargo/env"; \
-    cargo build --release; \
-    cp target/release/noalbs /usr/local/bin;
-
-# runtime container with NOALBS
 # Use the slim version for the runtime container with NOALBS
 FROM debian:bullseye-slim
 
