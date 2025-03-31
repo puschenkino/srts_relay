@@ -1,9 +1,7 @@
 # srts_relay
-mount a sls.conf to /srv/sls/etc/sls.conf with content:
+mount a sls.conf to /etc/sls/sls.conf with content:
 
 ```
-# SRT Live Server configuration
-#
 srt {
     worker_threads 1;
     worker_connections 200;

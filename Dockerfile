@@ -75,13 +75,13 @@ COPY --from=builder /usr/local/lib /usr/local/lib
 COPY --from=builder /usr/local/include /usr/local/include
 COPY --from=builder /usr/local/bin /usr/local/bin
 
-COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY build/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY files/logprefix /usr/local/bin/logprefix
 
 RUN set -xe; \
     ldconfig; \
     chmod 755 /usr/local/bin/logprefix;
 
-EXPOSE 5000/udp 8181/tcp 8282/udp
+EXPOSE 8181/tcp 8282/udp
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
