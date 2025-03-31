@@ -50,7 +50,7 @@ RUN cp /build/srtla/srtla_rec /build/srtla/srtla_send /usr/local/bin
 # srt-live-server
 # Notes
 # - upstream patch for logging on arm
-
+COPY patches/480f73dd17320666944d3864863382ba63694046.patch /tmp/
 ARG SRT_LIVE_SERVER_VERSION=master
 RUN set -xe; \
     mkdir -p /build; \
