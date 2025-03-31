@@ -1,0 +1,10 @@
+version: '3'
+services:
+  srt:
+    image: henrikhansen/srts_relay
+    ports: 
+      - 8181/tcp 
+      - 8282/udp
+    volumes:
+      - ./sls.conf:/etc/sls/sls.conf
+      - ./logs:/logs
